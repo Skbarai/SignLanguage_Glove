@@ -82,5 +82,5 @@ void loop()
   Serial.print(",");
   Send_gyro_values(calc_values(Get_MPU_Data(MPU_ADDR)));
 
-  delay(40);
+  delay(50);
 }
