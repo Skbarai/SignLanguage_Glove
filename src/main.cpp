@@ -17,6 +17,7 @@ const int PIN_RING_LOW = 14;
 
 const int PIN_THUMB = 35;
 const int PIN_PINKY = 13;
+float *values_to_send={};
 
 // BluetoothSerial SerialBT;
 
@@ -81,6 +82,28 @@ void loop()
   Serial.print(pinky, 2);
   Serial.print(",");
   Send_gyro_values(calc_values(Get_MPU_Data(MPU_ADDR)));
-
+// bluetooth
+//   SerialBT.print(idxUp, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(idxLow, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(midUp, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(midLow, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(RingUp, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(RingLow, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(thumb, 2);
+//   SerialBT.print(",");
+//   SerialBT.print(pinky, 2);
+//   SerialBT.print(",");
+//  values_to_send=calc_values(Get_MPU_Data(MPU_ADDR));
+//    SerialBT.print(values_to_send[0], 2);
+//   SerialBT.print(",");
+//   SerialBT.print(values_to_send[1], 2);
+//   SerialBT.print(",");
+//   SerialBT.print(values_to_send[2], 2);
   delay(50);
 }

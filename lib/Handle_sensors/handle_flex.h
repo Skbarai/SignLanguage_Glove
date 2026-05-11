@@ -7,6 +7,7 @@ struct FlexSensor {
   int index = 0;
   int total = 0;
   int baseline = 0;
+  int upperline=4095;
   int type;
 };
 void initFlex(FlexSensor &fs, int pin, int type );
