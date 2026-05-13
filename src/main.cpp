@@ -1,6 +1,6 @@
 #include <Wire.h>
 #include <Arduino.h>
-// #include "BluetoothSerial.h"
+#include "BluetoothSerial.h"
 #include "handle_gyro.h"
 #include "handle_flex.h"
 
@@ -18,8 +18,10 @@ const int PIN_RING_LOW = 14;
 const int PIN_THUMB = 35;
 const int PIN_PINKY = 13;
 float *values_to_send={};
+char Status ='D';
+long timekeep =0;
 
-// BluetoothSerial SerialBT;
+BluetoothSerial SerialBT;
 
 // Create objects for each sensor
 FlexSensor indexUp, indexLow;
@@ -29,11 +31,12 @@ FlexSensor thumbFlex, pinkyFlex;
 
 void setup()
 {
+  pinMode(4,INPUT_PULLDOWN);
   handle_gyro_init(MPU_ADDR);
   Serial.begin(115200);
-  // SerialBT.begin("ESP32_BT");
+  SerialBT.begin("ESP32_BT");
   // Initialize all flex sensors
-  initFlex(indexUp, PIN_INDEX_UP, 0);
+  initFlex(indexUp, PIN_INDEX_UP, -1);
   initFlex(indexLow, PIN_INDEX_LOW, 0);
 
   initFlex(middleUp, PIN_MIDDLE_UP, 1);
@@ -51,6 +54,16 @@ void setup()
 
 void loop()
 {
+  if(digitalRead(4)== HIGH && millis()- timekeep>500){
+    timekeep=millis();
+    if(Status =='D'){
+          Status = 'S';
+    }
+   else if(Status =='S'){
+          Status = 'D';
+    }
+  }
+
 
   float idxUp = readFlex(indexUp);
   float idxLow = readFlex(indexLow);
@@ -64,7 +77,10 @@ void loop()
   float thumb = readFlex(thumbFlex);
   float pinky = readFlex(pinkyFlex);
 
+
   // Output CSV
+  Serial.print(Status);
+  Serial.print(",");
   Serial.print(idxUp, 2);
   Serial.print(",");
   Serial.print(idxLow, 2);
@@ -83,27 +99,29 @@ void loop()
   Serial.print(",");
   Send_gyro_values(calc_values(Get_MPU_Data(MPU_ADDR)));
 // bluetooth
-//   SerialBT.print(idxUp, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(idxLow, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(midUp, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(midLow, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(RingUp, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(RingLow, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(thumb, 2);
-//   SerialBT.print(",");
-//   SerialBT.print(pinky, 2);
-//   SerialBT.print(",");
-//  values_to_send=calc_values(Get_MPU_Data(MPU_ADDR));
-//    SerialBT.print(values_to_send[0], 2);
-//   SerialBT.print(",");
-//   SerialBT.print(values_to_send[1], 2);
-//   SerialBT.print(",");
-//   SerialBT.print(values_to_send[2], 2);
+  SerialBT.print(Status);
+  SerialBT.print(",");
+  SerialBT.print(idxUp, 2);
+  SerialBT.print(",");
+  SerialBT.print(idxLow, 2);
+  SerialBT.print(",");
+  SerialBT.print(midUp, 2);
+  SerialBT.print(",");
+  SerialBT.print(midLow, 2);
+  SerialBT.print(",");
+  SerialBT.print(RingUp, 2);
+  SerialBT.print(",");
+  SerialBT.print(RingLow, 2);
+  SerialBT.print(",");
+  SerialBT.print(thumb, 2);
+  SerialBT.print(",");
+  SerialBT.print(pinky, 2);
+  SerialBT.print(",");
+ values_to_send=calc_values(Get_MPU_Data(MPU_ADDR));
+   SerialBT.print(values_to_send[0], 2);
+  SerialBT.print(",");
+  SerialBT.print(values_to_send[1], 2);
+  SerialBT.print(",");
+  SerialBT.print(values_to_send[2], 2);
   delay(50);
 }

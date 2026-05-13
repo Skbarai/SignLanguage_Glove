@@ -6,10 +6,10 @@ import random
 # CONFIG
 # ─────────────────────────────────────────────────────────────
 
-INPUT_JSON = "../JSON_DATA/xyz.json"
-OUTPUT_JSON = "../JSON_AUGMENTED/gestures_augmented_xyz.json"
+INPUT_JSON = "../JSON_DYNAMIC_DATA/gesture_dataset_namaste.json"
+OUTPUT_JSON = "../JSON_AUGMENTED/gestures_augmented_namaste.json"
 
-TARGET_TOTAL_SAMPLES = 100
+TARGET_TOTAL_SAMPLES = 1000
 
 FLEX_STD  = 2.0
 ACCEL_STD = 0.02

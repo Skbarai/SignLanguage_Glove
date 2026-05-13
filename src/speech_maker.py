@@ -3,9 +3,9 @@ import os
 import time
 
 # Folders
-CONSONANT_DIR = "consonants_mp3"
-WORD_DIR = "words_mp3"
-NUMBERS_DIR = "numbers_mp3"
+CONSONANT_DIR = "../sounds/consonants_mp3"
+WORD_DIR = "../sounds/words_mp3"
+NUMBERS_DIR = "../sounds/numbers_mp3"
 
 # Create folders if not exist
 os.makedirs(CONSONANT_DIR, exist_ok=True)
@@ -24,19 +24,23 @@ consonants = [
 ]
 
 words = [
-    ("mero", "मेरो"),
-    ("timi", "तिमी"),
-    ("khana", "खाना"),
-    ("pani", "पानी"),
-    ("namaste", "नमस्ते"),
-    ("dhanyabad", "धन्यवाद"),
-    ("sanchai", "सन्चै"),
-    ("aaja", "आज"),
-    ("kati", "कति"),
-    ("sathi", "साथी"),
-    ("fist", "मुट्ठी"),
-    ("thumbup", "राम्रो"),
-    ("twoo", "दुईई"),
+    # ("mero", "मेरो"),
+    # ("timi", "तिमी"),
+    # ("khana", "खाना"),
+    # ("pani", "पानी"),
+    # ("namaste", "नमस्ते"),
+    # ("dhanyabad", "धन्यवाद"),
+    # ("sanchai", "सन्चै"),
+    ("aaja", "आ ज"),
+    # ("kati", "कति"),
+    # ("sathi", "साथी"),
+    # ("fist", "मुट्ठी"),
+    # ("thumbup", "राम्रो"),
+    # ("twoo", "दुईई"),
+    # ("day","बार"),
+    # ("chinnu","चिन्नु")
+    ("malai","मलाई"),
+    ("ramro","राम्रो")
 ]
 
 nepali_numbers = [
@@ -84,4 +88,4 @@ for  roman,dev in words:
 #     os.system(f"mpg123 '{filename}' > /dev/null 2>&1")
 #     time.sleep(0.5)
 
-print("\n✔ All audio files generated and played successfully!\n")
+print("\n All audio files generated and played successfully!\n")

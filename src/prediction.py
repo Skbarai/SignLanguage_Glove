@@ -29,10 +29,10 @@ try:
             continue
 
         parts = line.split(',')
-        if len(parts) < 17:
+        if len(parts) < 18:
             continue
 
-        parts = parts[:14]
+        parts = parts[1:15]
 
         try:
             idxUp, idxLow, midUp, midLow, ringUp, ringLow, thumb, pinky, ax, ay, az, gx, gy, gz = map(float, parts)

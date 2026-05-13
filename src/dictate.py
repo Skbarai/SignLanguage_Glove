@@ -37,7 +37,6 @@ nepali_numbers = [
     "०","१","२","३","४","५","६","७","८","९"
 ]
 
-import os
 
 def play_sound(file_path):
     # Create static attributes on first use
